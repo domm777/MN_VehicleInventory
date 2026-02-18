@@ -5,20 +5,26 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using VehicleInventory.Domain.Enums;
 using VehicleInventory.Domain.Exceptions;
+using System.ComponentModel.DataAnnotations;
 
 namespace VehicleInventory.Domain.Entities {
     public class MN_Vehicle {
         // Constructor which initializes the Id property with a new Guid
         // Guid is a unique identifier that can be used to uniquely identify each vehicle in the inventory
+        [Required]
         public Guid Id { get; private set; }
 
         // VehicleCode is a unique code that identifies the vehicle, it is required and cannot be null or whitespace
+        [Required]
         public string VehicleCode { get; private set; }
         // LocationId is an integer that represents the location of the vehicle, required and cannot be null or whitespace
+        [Required]
         public int LocationId { get; private set; }
         // VehicleType is a string that represents the type of the vehicle, required and cannot be null or whitespace
+        [Required]
         public string VehicleType { get; private set; }
         // Status is an enumeration that represents the current status of the vehicle, it is required and cannot be null
+        [Required]
         public MN_VehicleStatus Status { get; private set; }
 
         // Constructor for the MN_Vehicle class which takes in the vehicle code, location id, vehicle type, and status as parameters

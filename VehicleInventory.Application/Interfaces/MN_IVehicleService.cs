@@ -7,7 +7,7 @@ using VehicleInventory.Application.DTOs;
 
 namespace VehicleInventory.Application.Interfaces {
     public interface MN_IVehicleService {
-        Task<MN_VehicleDto> CreateVehicle(MN_VehicleDto vehicle);
+        Task<MN_VehicleDto> CreateVehicle(MN_CreateVehicleDto vDto);
         Task<MN_VehicleDto?> GetVehicleById(Guid id);
         Task<IEnumerable<MN_VehicleDto>> GetAllVehicles();
         Task UpdateVehicleStatus(Guid id, string newStatus);

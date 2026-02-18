@@ -13,7 +13,7 @@ namespace VehicleInventory.Application.Services {
         private readonly MN_IVehicleRepository _vehicleRepository;
 
         // Constructor injection of the repository
-        public async Task<MN_VehicleDto> CreateVehicle(MN_VehicleDto dto) {
+        public async Task<MN_VehicleDto> CreateVehicle(MN_CreateVehicleDto dto) {
             var vehicle = new MN_Vehicle(dto.VehicleCode, dto.LocationId, dto.VehicleType);
 
             await _vehicleRepository.AddVehicle(vehicle);
