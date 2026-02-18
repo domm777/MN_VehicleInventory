@@ -22,20 +22,18 @@ namespace VehicleInventory.Domain.Entities {
         public MN_VehicleStatus Status { get; private set; }
 
         // Constructor for the MN_Vehicle class which takes in the vehicle code, location id, vehicle type, and status as parameters
-        public MN_Vehicle(string vehicleCode, int locationId, string vehicleType, MN_VehicleStatus status) {
-
+        public MN_Vehicle(string vehicleCode, int locationId, string vehicleType) {
             if (string.IsNullOrWhiteSpace(vehicleCode))
-                throw new MN_DomainException("Vehicle Code Is required.");
+                throw new MN_DomainException("Vehicle Code is required.");
 
             if (string.IsNullOrWhiteSpace(vehicleType))
-                throw new MN_DomainException("Vehicle Type Is required.");
+                throw new MN_DomainException("Vehicle Type is required.");
 
-            // Generate a new unique identifier for the vehicle
             Id = Guid.NewGuid();
             VehicleCode = vehicleCode;
             LocationId = locationId;
             VehicleType = vehicleType;
-            Status = status;
+            Status = MN_VehicleStatus.Available;
         }
 
         // Domain Behavior : Method to update the status of the vehicle
