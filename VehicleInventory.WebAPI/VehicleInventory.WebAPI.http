@@ -1,6 +1,0 @@
-@VehicleInventory.WebAPI_HostAddress = http://localhost:5078
-
-GET {{VehicleInventory.WebAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
