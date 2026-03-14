@@ -78,9 +78,9 @@ namespace MN_VehicleInventory.Application.Services {
         private MN_VehicleDto MapToDto(MN_Vehicle newVehicle) {
             return new MN_VehicleDto {
                 Id = newVehicle.Id,
-                VehicleCode = newVehicle.VehicleCode,
+                VehicleCode = newVehicle.VehicleCode.Value,
                 LocationId = newVehicle.LocationId,
-                VehicleType = newVehicle.VehicleType,
+                VehicleType = newVehicle.VehicleType.Value,
                 Status = newVehicle.Status.ToString()
             };
         }
