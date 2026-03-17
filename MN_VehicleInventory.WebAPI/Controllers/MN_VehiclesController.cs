@@ -34,32 +34,20 @@ namespace MN_VehicleInventory.WebAPI.Controllers {
         }
 
         // POST: api/vehicles
+        // Deleted the try and catch logic from create since we have common shared middleware
         [HttpPost]
         public async Task<ActionResult<MN_VehicleDto>> Create(MN_CreateVehicleDto dto) {
-            try {
-                var createdVehicle = await _vehicleService.CreateVehicle(dto);
-                // Returns 201 Created with a Location header pointing to the GET endpoint
-                return CreatedAtAction(nameof(GetById), new { id = createdVehicle.Id }, createdVehicle);
-            } catch (MN_DomainException ex) {
-                return BadRequest(new { error = ex.Message });
-            }
+            var createdVehicle = await _vehicleService.CreateVehicle(dto);
+            // Returns 201 Created with a Location header pointing to the GET endpoint
+            return CreatedAtAction(nameof(GetById), new { id = createdVehicle.Id }, createdVehicle);
         }
 
         // PUT: api/vehicles/{id}/status
+        // Deleted the try and catch logic from Update since we have common shared middleware
         [HttpPut("{id}/status")]
         public async Task<IActionResult> UpdateStatus(int id, [FromBody] string newStatus) {
-            try {
-                await _vehicleService.UpdateVehicleStatus(id, newStatus);
-                return NoContent();
-            } catch (KeyNotFoundException) {
-                return NotFound();
-            } catch (ArgumentException ex)
-              {
-                return BadRequest(new { error = ex.Message });
-            } catch (MN_DomainException ex)
-              {
-                return BadRequest(new { error = ex.Message });
-            }
+            await _vehicleService.UpdateVehicleStatus(id, newStatus);
+            return NoContent();
         }
 
         // DELETE: api/vehicles/{id}

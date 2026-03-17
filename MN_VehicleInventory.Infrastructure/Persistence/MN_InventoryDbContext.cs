@@ -12,6 +12,7 @@ namespace MN_VehicleInventory.Infrastructure.Persistence {
         public MN_InventoryDbContext(DbContextOptions options) : base(options) {}
 
         public DbSet<MN_Vehicle> Vehicles { get; set; }
+        public DbSet<MN_VehicleLocation> VehicleLocations { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder) { 
             modelBuilder.Entity<MN_Vehicle>(entity => {
                 entity.HasKey(e => e.Id);
@@ -25,9 +26,11 @@ namespace MN_VehicleInventory.Infrastructure.Persistence {
                     v => v.Value, 
                     v => new VehicleType(v)).IsRequired();
 
-                entity.Property(e => e.LocationId).IsRequired();
                 entity.Property(e => e.Status).IsRequired();
-
+            });
+            modelBuilder.Entity<MN_VehicleLocation>(entity => {
+                entity.HasKey(e => e.LocatioinID);
+                entity.Property(e => e.Address).IsRequired();
             });
             base.OnModelCreating(modelBuilder);
         }

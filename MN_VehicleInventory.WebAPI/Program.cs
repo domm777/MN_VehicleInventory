@@ -6,6 +6,10 @@ using MN_VehicleInventory.Application.Services;
 using MN_VehicleInventory.Infrastructure.Persistence;
 using MN_VehicleInventory.Infrastructure.Repositories;
 
+// Adding the commen class lib
+using MN_VehicleInventory.Shared;
+using MN_VehicleInventory.Shared.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +26,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+// Adding middleware pipline using DRY method talked in class in every microservice we build in the future instead of repeating logic.
+app.ConfigureGlobalExceptionHandler();
 
 // Configure the HTTP request pipeline. We are in development environment, so we want to use Swagger for API documentation and testing.
 if (app.Environment.IsDevelopment()) {
